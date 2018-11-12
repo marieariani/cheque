@@ -1,0 +1,206 @@
+<html>
+<style type="text/css">
+.bgimg {
+    background: url('cheque.jpg') no-repeat;
+    background-size: cover ;
+    height: 99%;
+	
+}
+#date{
+    color: black;
+    border: 1px solid green;
+    padding: 1px;
+    font-size: 19px;
+    position: relative;
+    left:190px;
+    top:120px;
+    
+}
+#money{
+    color: black;
+    border: 1px solid green;
+    padding: 1px;
+    height:7% ;
+    width: 260px;
+    
+    position: relative;
+    left:640px;
+    top:220px;
+}
+#to {
+    color: black;
+    border: 1px solid green;
+    
+    height:40px ;
+    width: 600px;
+    position: relative;
+    left:200px;
+    top:250px;
+    
+}
+#memo{
+    color: black;
+    border: 1px solid green;
+    
+    height:40px ;
+    width: 300px;
+    position: relative;
+    right:410px;
+    top:540px;
+}
+#add{
+    color: black;
+    border: 1px solid green;
+    
+    height:40px ;
+    width: 450px;
+    position: relative;
+    left:0px;
+    top:530px;
+}
+#moneystring{
+    color: black;
+    border: 1px solid green;
+    
+    height:40px ;
+    width: 600px;
+    position: relative;
+    right:-100px;
+    top:290px;
+}
+#enter{
+    
+    color:chartreuse ;
+    background-color:black;
+    position: relative;
+    left:200px;
+    top:570px;
+    height: 50px;
+    width: 100px;
+}
+#sub{
+    color:chartreuse ;
+    background-color:black;
+    position: relative;
+    left:110px;
+    top:385px;
+    height: 50px;
+    width: 100px;
+}
+</style>
+
+
+<body>
+    
+    <div class="bgimg">
+        <form name="myForm" action="https://www.w3schools.com/action_page.php" target="_top" onsubmit="return validateForm()" method="post">
+        <p id="parent"></p>
+        
+    </form>
+    
+   
+
+    </div>
+</body>
+<script>
+  var num="<input name=money id=money type=number  min=1 max=10000000 required placeholder=Money_Number>"
+  +": <input name=date id=date type=date  required>";
+  var text=  ": <input name=to id=to type=text  required placeholder=Person_Name >"
+            + ": <input name=for id=memo type=text  placeholder=Memo required>" 
+            +": <input name=firm id=add type=file accept=image/x-png required>"
+            +": <input name=Quantity id=moneystring type=text  required placeholder=Cuantity>";
+            
+            
+            function validateForm() {
+     document.forms["myForm"]["fname"]["money"]["date"]["to"]["memo"]["add"]["moneystring"].value;
+    return;
+}
+function verifica(){
+ var message,x,a;
+    
+//Person_name
+    
+    x=document.getElementById("to").value;
+     a=x.length
+    try {
+        if(x == "")  throw "empty";
+        if(/^[a-zA-Z]*$/g.test(x)) throw "Enter valid characters";
+        if(Number(x)) throw "Enter valid characters(only letters)" ;
+        if(a>30) throw "The min of character is 30";
+        x = String(x);
+        
+    }
+    catch(err) {
+        message.innerHTML = alert("Person name : " + err);
+    }
+    finally {
+        document.getElementById("to").value = "";
+    }
+    //money_number
+ 
+ x=document.getElementById("money").value;
+ 
+ try {
+      
+        if(x == "")  throw "Enter a valid character";
+        if(x<1) throw "THe min of characters is 1";
+        if(x>10000000) throw "the max of characters is 10,000,000";
+       
+        
+    }
+    catch(err) {
+        message.innerHTML = alert("Money number : " + err);
+        
+    }
+    finally {
+        document.getElementById("money").value = "";
+    }
+    //Cuantity
+    
+ x=document.getElementById("moneystring").value;
+ a=x.length
+ try {
+        if(x == "")  throw "empty";
+        if(Number(x)) throw "Enter valid characters(only letters)";
+        if(a>50) throw "The min of character is 50";
+        
+    }
+    catch(err) {
+        message.innerHTML = alert("Cuantity : " + err);
+    }
+    finally {
+        document.getElementById("moneystring").value = "";
+    }
+    
+    //Date
+ x=document.getElementById("date").value;
+ try {
+        if(x == "")  throw "empty";  
+    }
+    catch(err) {
+        message.innerHTML = alert("Date: " + err);
+    }
+    finally {
+        document.getElementById("date").value = "";
+    }
+  //memo
+  
+ x=document.getElementById("memo").value;
+ a=x.length
+ try {
+        if(x == "")  throw "empty";
+        if(Number(x)) throw "Enter valid characters(only letters)" ;
+        if(a>15) throw "The min of character is 15" ; 
+    }
+    catch(err) {
+        message.innerHTML = alert("memo: " + err);
+        
+    }
+    finally {
+        document.getElementById("memo").value = "";
+    }
+    
+}
+document.getElementById("parent").innerHTML= text+num+"<button id=enter onclick=verifica();return validateForm();>Verify</button>";
+</script>
+</html>
